@@ -25,9 +25,82 @@ body > .container {
   padding-left: 15px;
 }
 
-/*! Home page */
-.contentContainer {
-  width: 70vw;
-  
+/*! Header */
+.titleCont {
+  margin-bottom: 100px;
 }
 
+.pageTitle {
+  text-align: center;
+}
+
+/*! Home page */
+.newPostbtn {
+  position: fixed;
+}
+
+.newPostBtn {
+  margin-left: 90%;
+  font-size: 1.5rem;
+  padding: 8px !important;
+}
+
+.contentContainer {
+  width: 50vw !important;
+}
+
+.postCard {
+  border: 1px solid black;
+  border-radius: 4px;
+  max-width: 800px;
+  width: 80%;
+  padding: 16px;
+}
+
+.left-action > h2 {
+  font-size: 3rem;
+}
+
+.left-action > span {
+  font-size: 1.3rem;
+}
+
+.right-action {
+  text-align: right;
+}
+
+#userNameDisplay {
+  font-size: 1.1rem;
+}
+
+.profilePic {
+  background-image: url(../images/profilepic.jpg);
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: 80px;
+  height: 80px;
+  width: 80px;
+  border-radius: 100%;
+  right: 0;
+}
+
+.profilePicCont {
+  min-width: 80px;
+}
+
+.unitDisplay {
+  font-size: 1.5rem;
+}
+
+.creationTimeDisplay {
+  font-size: 1.2rem;
+}
+
+.postDescription {
+  width: 90%;
+}
+
+.postFooterCont {
+  text-align: right;
+  margin-top: 16px;
+}
