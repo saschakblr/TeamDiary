@@ -24,3 +24,10 @@ body > .container {
   padding-right: 15px;
   padding-left: 15px;
 }
+
+/*! Home page */
+.contentContainer {
+  width: 70vw;
+  
+}
+
