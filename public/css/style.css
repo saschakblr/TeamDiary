@@ -34,15 +34,15 @@ body > .container {
   text-align: center;
 }
 
-/*! Home page */
-.newPostbtn {
-  position: fixed;
+/*! Cards */
+.btnContainer {
+  text-align: center;
+  padding-bottom: 16px;
 }
 
-.newPostBtn {
-  margin-left: 90%;
+.rightBtn {
   font-size: 1.5rem;
-  padding: 8px !important;
+  padding: 8px;
 }
 
 .contentContainer {
@@ -103,4 +103,26 @@ body > .container {
 .postFooterCont {
   text-align: right;
   margin-top: 16px;
+}
+
+/* ! Profile page */
+.userProfile {
+  padding-bottom: 50px;
+  display: flex;
+  max-width: 1000px;
+  width: 45%;
+}
+
+.bigAvatar {
+  background-image: url(../images/profilepic.jpg);
+  background-size: 150px;
+  background-repeat: no-repeat;
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+}
+
+.profileInfo {
+  margin-left: 16px;
+  padding-top: 40px;
 }
