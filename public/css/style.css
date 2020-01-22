@@ -196,3 +196,9 @@ body > .container {
   text-align: center;
 }
 
+/*edit post*/
+/*textarea*/
+#textarea textarea {
+  resize: none;
+  height: 150px;
+}
