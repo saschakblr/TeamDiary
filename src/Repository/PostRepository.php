@@ -44,4 +44,8 @@ class PostRepository extends Repository
 
         return $statement->insert_id;
     }
+
+    public function delete($id) {
+        $query = "DELETE  * FROM $this->tablename WHERE id = ?";
+    }
 }

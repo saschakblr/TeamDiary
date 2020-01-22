@@ -48,12 +48,16 @@
             <!-- //* Buttons to edit and delete the post -->
             <div class="postFooterCont">
                 <div>
-                    <a href="#">
-                        <button type="button" class="btn btn-primary">Edit</button>
-                    </a>
-                    <a href="#">
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </a>
+                    <form action="/post/doEdit" name="edit" method="post">
+                        <a href="#">
+                            <button value="Edit" type="submit" class="btn btn-primary">Edit</button>
+                        </a>
+                    </form>
+                    <form action="/post/doDelete" method="post">
+                        <a href="#">
+                            <button value="Delete" name="delete" type="submit" class="btn btn-danger">Delete</button>
+                        </a>
+                    </form>
                 </div>
             </div>
         </div>

@@ -54,5 +54,12 @@ class PostController
 
         header('Location: /post/home');
     }
+
+    public function doDelete() {
+        if (isset($_POST['delete'])) {
+            $postRepository = new PostRepository();
+            $postRepository->delete($id);
+        }
+    }
 }
 
