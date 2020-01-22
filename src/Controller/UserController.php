@@ -21,19 +21,19 @@ class UserController
         $view->display();
     }
 
-    public function sign_up()
+    public function create_profile()
     {
-        $view = new View('user/signup');
+        $view = new View('user/createprofile');
         $view->title = 'Sign Up';
         $view->heading = 'Sign Up';
         $view->display();
     }
 
-    public function sign_in()
+    public function login()
     {
-        $view = new View('user/signin');
-        $view->title = 'Sign In';
-        $view->heading = 'Sign In';
+        $view = new View('user/login');
+        $view->title = 'Login';
+        $view->heading = 'Login';
         $view->display();
     }
 
