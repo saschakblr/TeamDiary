@@ -18,7 +18,7 @@
                 <!-- //* Title and length of the post -->
                 <div class="col">
                     <h2><?= $post->title?></h2>
-                    <span>2 Hours</span>
+                    <span><?= ($post->length > 1) ? "$post->length Hours" : "$post->length Hour"?></span>
                 </div>
                 <!-- //* Avatar and info about the user -->
                 <div class="col right-action d-flex">
@@ -43,7 +43,7 @@
             <hr>
             <!-- //* Body of the post -->
             <div class="postDescription">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                <?= $post->description ?>
             </div>
             <!-- //* Buttons to edit and delete the post -->
             <div class="postFooterCont">

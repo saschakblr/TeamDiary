@@ -39,5 +39,20 @@ class PostController
         $view->posts = $postRepository->readAll();
         $view->display();
     }
+
+    public function doCreate() {
+        if (isset($_POST['send'])) {
+            if (isset($_POST['title']) && !empty($_POST['title']) && isset($_POST['length']) && !empty($_POST['length']) && isset($_POST['description']) && !empty($_POST['description'])) {
+                $title = $_POST['title'];
+                $length = $_POST['length'];
+                $description = $_POST['description'];
+    
+                $postRepository = new PostRepository();
+                $postRepository->create($title, $length, $description);
+            }
+        }
+
+        header('Location: /post/home');
+    }
 }
 

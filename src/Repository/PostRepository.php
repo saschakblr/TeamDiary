@@ -36,7 +36,7 @@ class PostRepository extends Repository
         $query = "INSERT INTO $this->tableName (title, length, description) VALUES (?, ?, ?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('sss', $title, $length, $description);
+        $statement->bind_param('sis', $title, $length, $description);
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);
