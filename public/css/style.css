@@ -165,6 +165,20 @@ body > .container {
   padding: 12px 0 0 16px;
 }
 
+/* ! Edit User */
+.editProfileContainer {
+  padding-bottom: 64px;
+}
+
+.bigImageDisplay {
+  background-image: url(../images/profilepic.jpg);
+  background-size: 150px;
+  background-repeat: no-repeat;
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+}
+
 /* ! Footer */
 .text_footer {
   font-size: 30px;

@@ -45,9 +45,9 @@ class UserController
         $view->display();
     }
 
-    public function edit_profile()
+    public function edit()
     {
-        $view = new View('user/editprofile');
+        $view = new View('user/edit');
         $view->title = 'Edit Profile';
         $view->heading = 'Edit Profile';
         $view->display();
