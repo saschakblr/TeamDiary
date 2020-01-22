@@ -10,20 +10,20 @@ use App\View\View;
  */
 class PostController
 {
-    public function create_post()
+    public function create()
     {
         $userRepository = new UserRepository();
 
-        $view = new View('post/createpost');
+        $view = new View('post/create');
         $view->title = 'Create Post';
         $view->heading = 'Create Post';
         $view->users = $userRepository->readAll();
         $view->display();
     }
 
-    public function edit_post()
+    public function edit()
     {
-        $view = new View('post/editpost');
+        $view = new View('post/edit');
         $view->title = 'Edit Post';
         $view->heading = 'Edit Post';
         $view->display();
@@ -37,3 +37,4 @@ class PostController
         $view->display();
     }
 }
+
