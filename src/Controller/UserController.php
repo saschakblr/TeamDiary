@@ -56,17 +56,17 @@ class UserController
     public function doCreate()
     {
         if (isset($_POST['send'])) {
-            $firstName = $_POST['fname'];
-            $lastName = $_POST['lname'];
+            $firstName = $_POST['firstname'];
+            $name = $_POST['name'];
             $email = $_POST['email'];
             $password = $_POST['password'];
 
             $userRepository = new UserRepository();
-            $userRepository->create($firstName, $lastName, $email, $password);
+            $userRepository->create($firstName, $name, $email, $password);
         }
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
-        header('Location: /user');
+        header('Location: /post/home');
     }
 
     public function delete()
@@ -79,13 +79,26 @@ class UserController
     }
 
     public function doLogin() {
-        if (isset($_POST['send'])) {
-            if (isset($_POST['email'])) {
-                if (isset($_POST['password'])) {
-                    $userRepository = new UserRepository();
-                    $userRepository->login($email, $password);
-                }
+        if (!isset($_POST['send'])) {
+            header('Location: /user/login');
+        }
+            
+        if (!isset($_POST['email'])) {
+            header('Location: /user/login');
+        }
+
+        if (isset($_POST['password'])) {
+            $userRepository = new UserRepository();
+            if ($userRepository->login($_POST["email"], $_POST["password"])) {
+                header('Location: /post/home');
+            } else {
+                header('Location: /user/login');
             }
         }
+    }
+
+    public function doLogout() {
+        session_destroy();
+        unset($_SESSION["user_id"]);
     }
 }

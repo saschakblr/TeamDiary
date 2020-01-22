@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\UserRepository;
+use App\Repository\PostRepository;
 use App\View\View;
 
 /**
@@ -12,12 +12,12 @@ class PostController
 {
     public function create_post()
     {
-        $userRepository = new UserRepository();
+        $postRepository = new postRepository();
 
         $view = new View('post/createpost');
         $view->title = 'Create Post';
         $view->heading = 'Create Post';
-        $view->users = $userRepository->readAll();
+        $view->posts = $postRepository->readAll();
         $view->display();
     }
 
@@ -31,8 +31,6 @@ class PostController
 
     public function home()
     {
-
-
         $postRepository = new PostRepository();
 
         $view = new View('post/home');

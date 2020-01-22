@@ -2,7 +2,7 @@
 <div class="contentContainer mx-auto">
     <?php if (empty($posts)): ?>
 		<div class="dhd">
-			<h2 class="item title">Hoopla! Keine User gefunden.</h2>
+			<h2 class="item title">Hoopla! Keine Posts gefunden.</h2>
 		</div>
 	<?php else: ?>
         <!-- //* Button to create post -->

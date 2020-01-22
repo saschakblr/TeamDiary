@@ -31,7 +31,7 @@ class PostRepository extends Repository
      *
      * @throws Exception falls das Ausführen des Statements fehlschlägt
      */
-    public function create($title, $length, $description)
+    public function create($title, $length, $description) {
 
         $query = "INSERT INTO $this->tableName (title, length, description) VALUES (?, ?, ?)";
 
