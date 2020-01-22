@@ -15,17 +15,41 @@ class UserController
         $userRepository = new UserRepository();
 
         $view = new View('user/index');
-        $view->title = 'Benutzer';
-        $view->heading = 'Benutzer';
+        $view->title = 'Users';
+        $view->heading = 'Users';
         $view->users = $userRepository->readAll();
         $view->display();
     }
 
-    public function create()
+    public function create_profile()
     {
-        $view = new View('user/create');
-        $view->title = 'Benutzer erstellen';
-        $view->heading = 'Benutzer erstellen';
+        $view = new View('user/createprofile');
+        $view->title = 'Sign Up';
+        $view->heading = 'Sign Up';
+        $view->display();
+    }
+
+    public function login()
+    {
+        $view = new View('user/login');
+        $view->title = 'Login';
+        $view->heading = 'Login';
+        $view->display();
+    }
+
+    public function profile()
+    {
+        $view = new View('user/profile');
+        $view->title = 'Profile';
+        $view->heading = 'Profile';
+        $view->display();
+    }
+
+    public function edit()
+    {
+        $view = new View('user/edit');
+        $view->title = 'Edit Profile';
+        $view->heading = 'Edit Profile';
         $view->display();
     }
 

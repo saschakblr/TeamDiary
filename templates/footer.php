@@ -1,8 +1,12 @@
     </main>
 
     <footer class="footer">
-      <div class="container">
-        <span class="text-muted">&copy; ICT Berufsbildungcenter AG 2016</span>
+      <div class="container mx-auto" id = "container_footer">
+        <img src="\images\swisscomlogo.png" alt="Logo" height="84" width="84">
+        <br>
+        <span class="text_footer">TeamDiary</span>
+        <hr class = "hr_footer">
+        <span class="text-muted">&copy; 2020 - TeamDiary.com</span>
       </div>
     </footer>
 

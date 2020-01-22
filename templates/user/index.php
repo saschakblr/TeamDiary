@@ -1,19 +1,24 @@
-<article class="hreview open special">
-	<?php if (empty($users)): ?>
-		<div class="dhd">
-			<h2 class="item title">Hoopla! Keine User gefunden.</h2>
-		</div>
-	<?php else: ?>
-		<?php foreach ($users as $user): ?>
-			<div class="panel panel-default">
-				<div class="panel-heading"><?= $user->firstname; ?> <?= $user->name; ?></div>
-				<div class="panel-body">
-					<p class="description">In der Datenbank existiert ein User mit dem Namen <?= $user->firstname; ?> <?= $user->name; ?>. Dieser hat die EMail-Adresse: <a href="mailto:<?= $user->email; ?>"><?= $user->email; ?></a></p>
-					<p>
-						<a title="Löschen" href="/user/delete?id=<?= $user->id; ?>">Löschen</a>
-					</p>
-				</div>
-			</div>
-		<?php endforeach; ?>
-	<?php endif; ?>
-</article>
+<!-- //* Container for the whole content -->
+<div class="contentContainer mx-auto">
+    <!-- //* Container for the logo header -->
+    <div class="logoHeaderContainer mx-auto">
+        <img src="/images/logo.png" alt="" class="logoHeader mx-auto">
+    </div>
+    <!-- //* Container for all profile cards -->
+    <div class="profileCardsContainer">
+        <!-- //* profile Cards
+            //* Each card has a widht of 50% to create two rows of cards  -->
+        <div class="cardContainer mx-auto">
+            <div class="card w-75 profileCard mx-auto">
+                <div class="card-body d-flex">
+                    <div class="d-flex-fill">
+                        <div class="avatarElement"></div>
+                    </div>
+                    <div class="d-flex-fill cardUserName">
+                        <div class="align-middle"><strong>Max Mustermann</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
