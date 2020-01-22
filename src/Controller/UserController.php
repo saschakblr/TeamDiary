@@ -10,11 +10,11 @@ use App\View\View;
  */
 class UserController
 {
-    public function users()
+    public function index()
     {
         $userRepository = new UserRepository();
 
-        $view = new View('user/users');
+        $view = new View('user/index');
         $view->title = 'Users';
         $view->heading = 'Users';
         $view->users = $userRepository->readAll();
