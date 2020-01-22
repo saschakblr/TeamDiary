@@ -21,9 +21,9 @@ class UserController
         $view->display();
     }
 
-    public function create_profile()
+    public function create()
     {
-        $view = new View('user/createprofile');
+        $view = new View('user/create');
         $view->title = 'Sign Up';
         $view->heading = 'Sign Up';
         $view->display();
