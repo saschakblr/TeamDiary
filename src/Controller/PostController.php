@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\UserRepository;
+use App\Repository\PostRepository;
 use App\View\View;
 
 /**
@@ -12,12 +12,12 @@ class PostController
 {
     public function create()
     {
-        $userRepository = new UserRepository();
+        $postRepository = new postRepository();
 
         $view = new View('post/create');
         $view->title = 'Create Post';
         $view->heading = 'Create Post';
-        $view->users = $userRepository->readAll();
+        $view->posts = $postRepository->readAll();
         $view->display();
     }
 
@@ -31,10 +31,28 @@ class PostController
 
     public function home()
     {
+        $postRepository = new PostRepository();
+
         $view = new View('post/home');
         $view->title = 'Home';
         $view->heading = 'Home';
+        $view->posts = $postRepository->readAll();
         $view->display();
+    }
+
+    public function doCreate() {
+        if (isset($_POST['send'])) {
+            if (isset($_POST['title']) && !empty($_POST['title']) && isset($_POST['length']) && !empty($_POST['length']) && isset($_POST['description']) && !empty($_POST['description'])) {
+                $title = $_POST['title'];
+                $length = $_POST['length'];
+                $description = $_POST['description'];
+    
+                $postRepository = new PostRepository();
+                $postRepository->create($title, $length, $description);
+            }
+        }
+
+        header('Location: /post/home');
     }
 }
 

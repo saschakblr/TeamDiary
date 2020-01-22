@@ -1,4 +1,4 @@
-<!-- //* Container for the whole content -->
+<!-- //* Container for the whole content --> 
 <div class="contentContainer mx-auto">
     <!-- //* Container for the logo header -->
     <div class="logoHeaderContainer mx-auto">
