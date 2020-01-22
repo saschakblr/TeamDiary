@@ -35,6 +35,15 @@ body > .container {
   margin-bottom: 100px;
 }
 
+.navbar-brand {
+  font-size: 50px;
+}
+
+.nav-item{
+  font-size: 25px;
+  margin-top: 20px;
+}
+
 .pageTitle {
   text-align: center;
 }
