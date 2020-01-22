@@ -10,13 +10,13 @@ use Exception;
  *
  * Die Ausführliche Dokumentation zu Repositories findest du in der Repository Klasse.
  */
-class UserRepository extends Repository
+class PostRepository extends Repository
 {
     /**
      * Diese Variable wird von der Klasse Repository verwendet, um generische
      * Funktionen zur Verfügung zu stellen.
      */
-    protected $tableName = 'user';
+    protected $tableName = 'post';
 
     /**
      * Erstellt einen neuen benutzer mit den gegebenen Werten.
@@ -31,27 +31,12 @@ class UserRepository extends Repository
      *
      * @throws Exception falls das Ausführen des Statements fehlschlägt
      */
-    public function create($firstName, $lastName, $email, $password)
-    {
-        $password = sha1($password);
+    public function create($title, $length, $description)
 
-        $query = "INSERT INTO $this->tableName (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO $this->tableName (title, length, description) VALUES (?, ?, ?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ssss', $firstName, $lastName, $email, $password);
-
-        if (!$statement->execute()) {
-            throw new Exception($statement->error);
-        }
-
-        return $statement->insert_id;
-    }
-
-    public function login($email, $password) {
-        $query = "SELECT FROM $this->tablename (email, password) VALUES (?,?)";
-
-        $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ss', $email, $password);
+        $statement->bind_param('sss', $title, $length, $description);
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);

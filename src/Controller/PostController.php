@@ -31,9 +31,14 @@ class PostController
 
     public function home()
     {
+
+
+        $postRepository = new PostRepository();
+
         $view = new View('post/home');
         $view->title = 'Home';
         $view->heading = 'Home';
+        $view->posts = $postRepository->readAll();
         $view->display();
     }
 }
