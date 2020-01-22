@@ -15,7 +15,7 @@
 
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      
+      <div class="profilePic" id="pb"></div>
       <a class="navbar-brand" href="/post/home">TeamDiary</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -34,7 +34,36 @@
         </ul>
       </div>
   </nav>
+<!-- 
+Header -> page login
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/post/login">TeamDiary</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="nav-link" id="signin" href="/post/create">Sign up</a>
+
+      </nav> 
+
+
+      Header -> page signup 
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/post/login">TeamDiary</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="nav-link" id="signin" href="/post/login">Sign in</a>
+
+      </nav>
+      -->
   </header>
+
+  <?php
+
+
+  ?>
 
   <main class="container">
     <div class="titleCont">
