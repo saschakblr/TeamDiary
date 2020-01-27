@@ -40,23 +40,22 @@
                     </div>
                 </div>
             </div>
-            <hr>
+            <hr />
             <!-- //* Body of the post -->
             <div class="postDescription">
                 <?= $post->description ?>
             </div>
+            <hr />
             <!-- //* Buttons to edit and delete the post -->
             <div class="postFooterCont">
                 <div>
-                    <form action="/post/doEdit" name="edit" method="post">
-                        <a href="#">
-                            <button value="Edit" type="submit" class="btn btn-primary">Edit</button>
-                        </a>
+                    <form action="/post/doEdit" class="d-inline" name="edit" method="post">
+                    <input type="hidden" name="editId" value="<?= $post->id ?>">
+                        <button value="Edit" name="edit" type="submit" class="btn btn-primary">Edit</button>
                     </form>
-                    <form action="/post/doDelete" method="post">
-                        <a href="#">
-                            <button value="Delete" name="delete" type="submit" class="btn btn-danger">Delete</button>
-                        </a>
+                    <form action="/post/doDelete" class="d-inline" method="post">
+                        <input type="hidden" name="deleteId" value="<?= $post->id ?>">
+                        <button value="Delete" name="delete" type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </div>
             </div>
