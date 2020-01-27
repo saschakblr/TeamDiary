@@ -83,4 +83,22 @@ class UserRepository extends Repository
         // Den gefundenen Datensatz zurückgeben
         return true;
     }
+
+    public function save($id, $image, $firstName, $lastName, $email) {
+        $query = "UPDATE $this->tableName SET image = ?, firstName = ?, name = ?, email = ? WHERE id = ?";
+
+        $statement = ConnectionHandler:: getConnection()->prepare($query);
+        $statement->bind_param('ssssi', $image, $firstName, $name, $email, $id);
+
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+
+        return $statement->insert_id;
+    }
+
+    public function delete($id) {
+        $query = "DELETE  * FROM $this->tablename WHERE id = ?";
+    }
 }
+

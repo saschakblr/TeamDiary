@@ -2,9 +2,10 @@
 <div class="contentContainer mx-auto">
     <!-- //* Button to edit the profile -->
     <div class="btnContainer">
-        <a href="#">
-            <button type="button" class="btn btn-secondary rightBtn">Edit Profile</button>
-        </a>
+        <form action="/user/doEdit" class="d-inline" name="edit" method="post">
+            <input type="hidden" name="editId" value="<?= $user->id ?>">
+            <button type="submit" class="btn btn-secondary rightBtn">Edit Profile</button>
+        </form>
     </div>
     <!-- //* Container to Display user information -->
     <div class="userProfile mx-auto">
