@@ -11,9 +11,9 @@
     <div class="userProfile mx-auto">
         <div class="bigAvatar"></div>
         <div class="profileInfo">
-            <div class="infoRow"><strong>Firstname: </strong>Max</div>
-            <div class="infoRow"><strong>Lastname: </strong>Mustermann</div>
-            <div class="infoRow"><strong>Email: </strong>max.mustermann@gmail.com</div>
+            <div class="infoRow"><strong>Firstname: </strong><?=$user->firstname;?></div>
+            <div class="infoRow"><strong>Lastname: </strong><?=$user->name;?></div>
+            <div class="infoRow"><strong>Email: </strong><?=$user->email;?></div>
         </div>
     </div>
     <!-- //* Cards to display the posts -->

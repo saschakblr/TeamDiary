@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
+use App\Repository\UnitRepository;
 use App\View\View;
 
 /**
@@ -39,10 +40,15 @@ class UserController
 
     public function profile()
     {
-        $view = new View('user/profile');
-        $view->title = 'Profile';
-        $view->heading = 'Profile';
-        $view->display();
+        if(Authentication::checkIfLoggedIn()){
+            $userRepository = new UserRepository(); 
+            $view = new View('user/profile');
+            $view->title = 'Profile';
+            $view->heading = 'Profile';
+            $view->user = $userRepository->readById($_SESSION['user_id']);
+            $view->display();
+        }else{
+        header ("location : /user/irgendöbbis");}
     }
 
     public function edit()
@@ -100,11 +106,13 @@ class UserController
     public function doEdit() {
         if (isset($_POST['edit']) && isset($_POST['editId'])) {
             $userRepository = new UserRepository();
+            $unitRepository = new UnitRepository();
             
             $view = new View('user/edit');
             $view->title = 'Edit User';
             $view->heading = 'Edit User';
             $view->user = $userRepository->readById($_POST['editId']);
+            $view->units = $unitRepository->readAll();
             $view->display();
         }
     }
@@ -122,12 +130,12 @@ class UserController
                 $userRepository = new UserRepository();
                 $userRepository->save($id, $image, $firstName, $lastName, $email, $deleteProfile);
 
-                header('Location: /user/profile');
+                //header('Location: /user/profile');
             } else {
-                echo "Du kommst hier net rein!";
+                //echo "Du kommst hier net rein!";
             }
         } else if (isset($_POST['reset'])) {
-            header('Location: /user/profile');
+            //header('Location: /user/profile');
         }
     }
 

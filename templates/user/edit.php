@@ -1,33 +1,40 @@
 <!-- //* Container for all the main elements of the page -->
 <div class="contentContainer mx-auto">
-    <form action="/user/doSave" class="d-inline" method="post">
+    <form action="/user/doSave" class="d-inline" method="post" enctype="multipart/form-data">
         <!-- //* FileUploader for the avatar -->
         <div class="bigAvatar mx-auto mb-4"></div>
         <div class="input-group mb-3 w-50 mx-auto">
             <div class="custom-file">
-                <input type="file" name="image" class="custom-file-input" id="inputGroupFile02">
+                <input type="file" name="fileToUpload" class="custom-file-input" id="inputGroupFile02">
                 <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
             </div>
         </div>
         <!-- //* Container to edit user information -->
         <div class="editProfileContainer mx-auto w-50">
             <!-- //* Inputfields to edit the name and email -->
+            <input type="hidden" value="<?= $user->id ?>" />
             <div class="input-group mb-3">
-                <input type="text" name="firstName" class="form-control" placeholder="Firstname" aria-label="Firstname" aria-describedby="basic-addon1">
+                <input type="text" name="firstName" class="form-control" placeholder="Firstname" aria-label="Firstname" aria-describedby="basic-addon1" value="<?=$user->firstname;?>">
             </div>
             <div class="input-group mb-3">
-                <input type="text" name="name" class="form-control" placeholder="Name" aria-label="name" aria-describedby="basic-addon1">
+                <input type="text" name="name" class="form-control" placeholder="Name" aria-label="name" aria-describedby="basic-addon1" value="<?=$user->name;?>">
             </div>
             <div class="input-group mb-3">
-                <input type="text" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                <input type="text" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" value="<?=$user->email;?>">
             </div>
-            <!-- //* Checkbox to delete the profile -->
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" name="deleteProfile" type="checkbox" value="" id="invalidCheck2" required>
-                    <label class="form-check-label" for="invalidCheck2">
-                        Delete Profile (Cannot be undone!)
-                    </label>
+            <div class="input-group mb-3">
+                <!-- // TODO Input field for Unit (Backend with join) -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Unit
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <select name="unit">
+                        <?= foreach($units as $unit) ?>
+                            <option value="<?=$unit->id;?>"><?=$unit->name;?></option>
+                        <?= endforeach ?>                        
+                    </select>
+                    </div>
                 </div>
             </div>
             <!-- //* Buttons to abort and submit changes -->
