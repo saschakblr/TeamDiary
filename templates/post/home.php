@@ -7,7 +7,7 @@
 	<?php else: ?>
         <!-- //* Button to create post -->
         <div class="btnContainer">
-            <a href="#">
+            <a href="/post/create">
                 <button type="button" class="btn btn-secondary rightBtn"><strong>+</strong> New Post</button>
             </a>
         </div>
@@ -35,25 +35,28 @@
                         </span>
                         <br>
                         <span class="creationTimeDisplay">
-                            Created at: 20.1.2020
+                            Created at: <?= date_format(new DateTime($post->createdAt), 'd.m.Y'); ?>
                         </span>
                     </div>
                 </div>
             </div>
-            <hr>
+            <hr />
             <!-- //* Body of the post -->
             <div class="postDescription">
                 <?= $post->description ?>
             </div>
+            <hr />
             <!-- //* Buttons to edit and delete the post -->
             <div class="postFooterCont">
                 <div>
-                    <a href="#">
-                        <button type="button" class="btn btn-primary">Edit</button>
-                    </a>
-                    <a href="#">
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </a>
+                    <form action="/post/doEdit" class="d-inline" name="edit" method="post">
+                    <input type="hidden" name="editId" value="<?= $post->id ?>">
+                        <button value="Edit" name="edit" type="submit" class="btn btn-primary">Edit</button>
+                    </form>
+                    <form action="/post/doDelete" class="d-inline" method="post">
+                        <input type="hidden" name="deleteId" value="<?= $post->id ?>">
+                        <button value="Delete" name="delete" type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>

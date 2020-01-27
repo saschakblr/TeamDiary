@@ -33,7 +33,7 @@ class PostRepository extends Repository
      */
     public function create($title, $length, $description) {
 
-        $query = "INSERT INTO $this->tableName (title, length, description) VALUES (?, ?, ?)";
+        $query = "INSERT INTO $this->tableName (title, length, description, createdAt) VALUES (?, ?, ?, SYSDATE())";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->bind_param('sis', $title, $length, $description);
@@ -43,5 +43,22 @@ class PostRepository extends Repository
         }
 
         return $statement->insert_id;
+    }
+
+    public function save($id, $title, $length, $description) {
+        $query = "UPDATE $this->tableName SET title = ?, length = ?, description = ? WHERE id = ?";
+
+        $statement = ConnectionHandler:: getConnection()->prepare($query);
+        $statement->bind_param('sisi', $title, $length, $description, $id);
+
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+
+        return $statement->insert_id;
+    }
+
+    public function delete($id) {
+        $query = "DELETE  * FROM $this->tablename WHERE id = ?";
     }
 }
