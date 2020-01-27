@@ -58,9 +58,9 @@ body > .container {
   width: 50%;
 }
 
-#signin {
+.login {
   display: inline-block;
-  width: 50%;
+  width: 10%;
   text-align: right;
 }
 

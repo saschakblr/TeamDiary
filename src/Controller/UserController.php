@@ -39,16 +39,19 @@ class UserController
             $view->heading = 'Profile';
             $view->user = $userRepository->readById($userId);
             $view->posts = $postRepository->readAllFromCurrentUser($userId);
-            $view->display();
+            $view->display($userId);
         }
     }
 
     public function edit()
     {
-        $view = new View('user/edit');
-        $view->title = 'Edit Profile';
-        $view->heading = 'Edit Profile';
-        $view->display();
+        $userId = Authentication::checkIfLoggedIn();
+        if ($userId > 0) {
+            $view = new View('user/edit');
+            $view->title = 'Edit Profile';
+            $view->heading = 'Edit Profile';
+            $view->display($userId);
+        }
     }
 
     public function doCreate()
@@ -61,6 +64,8 @@ class UserController
 
             $userRepository = new UserRepository();
             $userRepository->create($firstName, $name, $email, $password);
+
+            $userRepository->login($email, $password);
         }
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
@@ -96,45 +101,47 @@ class UserController
     }
 
     public function doEdit() {
-        if (isset($_POST['edit']) && isset($_POST['editId'])) {
-            $userRepository = new UserRepository();
-            
-            $view = new View('user/edit');
-            $view->title = 'Edit User';
-            $view->heading = 'Edit User';
-            $view->user = $userRepository->readById($_POST['editId']);
-            $view->display();
+        $userId = Authentication::checkIfLoggedIn();
+        if ($userId > 0) {
+            if (isset($_POST['edit']) && isset($_POST['editId'])) {
+                $userRepository = new UserRepository();
+                
+                $view = new View('user/edit');
+                $view->title = 'Edit User';
+                $view->heading = 'Edit User';
+                $view->user = $userRepository->readById($_POST['editId']);
+                $view->display($userId);
+            }
         }
     }
 
     public function doSave() {
-        if (isset($_POST['save']) && isset($_POST['saveId'])) {
-            if (isset($_POST['image']) && !empty($_POST['image']) && isset($_POST['firstName']) && !empty($_POST['firstName']) && isset($_POST['name']) && !empty($_POST['name']) && isset($_POST['email']) && !empty($_POST['email'])) {
-                $id = $_POST['saveId'];
-                $image = $_POST['image'];
-                $firstName = $_POST['firstName'];
-                $name = $_POST['name'];
-                $email = $_POST['email'];
-                $deleteProfile = $_POST['deleteProfile'];
-                
-                $userRepository = new UserRepository();
-                $userRepository->save($id, $image, $firstName, $lastName, $email, $deleteProfile);
+        $userId = Authentication::checkIfLoggedIn();
+        if ($userId > 0) {
+            if (isset($_POST['save']) && isset($_POST['saveId'])) {
+                if (isset($_POST['image']) && !empty($_POST['image']) && isset($_POST['firstName']) && !empty($_POST['firstName']) && isset($_POST['name']) && !empty($_POST['name']) && isset($_POST['email']) && !empty($_POST['email'])) {
+                    $id = $_POST['saveId'];
+                    $image = $_POST['image'];
+                    $firstName = $_POST['firstName'];
+                    $name = $_POST['name'];
+                    $email = $_POST['email'];
+                    $deleteProfile = $_POST['deleteProfile'];
+                    
+                    $userRepository = new UserRepository();
+                    $userRepository->save($id, $image, $firstName, $lastName, $email, $deleteProfile);
 
+                    header('Location: /user/profile');
+                } else {
+                    echo "Du kommst hier net rein!";
+                }
+            } else if (isset($_POST['reset'])) {
                 header('Location: /user/profile');
-            } else {
-                echo "Du kommst hier net rein!";
             }
-        } else if (isset($_POST['reset'])) {
-            header('Location: /user/profile');
         }
     }
 
     public function doLogout() {
         session_destroy();
         unset($_SESSION["user_id"]);
-    }
-
-    public function doCheckLogin() {
-        
     }
 }
