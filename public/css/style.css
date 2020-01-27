@@ -49,6 +49,30 @@ body > .container {
   text-align: right;
 }
 
+#logo {
+  display: inline-block;
+  width: 50%;
+}
+
+#signin {
+  display: inline-block;
+  width: 50%;
+  text-align: right;
+}
+
+#picture{
+  text-align: right;
+}
+
+#logout {
+  display: inline-block;
+  text-align: right;
+}
+
+.companyPic{
+  height: 80px;
+}
+
 .pageTitle {
   text-align: center;
 }
