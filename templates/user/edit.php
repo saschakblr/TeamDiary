@@ -23,18 +23,14 @@
                 <input type="text" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" value="<?=$user->email;?>">
             </div>
             <div class="input-group mb-3">
-                <!-- // TODO Input field for Unit (Backend with join) -->
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Unit
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <select name="unit">
+                
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Choose from the following.</option>
                         <?php foreach($units as $unit): ?>
                             <option value="<?=$unit->id;?>"><?=$unit->name;?></option>
                         <?php endforeach ?>                        
                     </select>
-                    </div>
                 </div>
             </div>
             <!-- //* Buttons to abort and submit changes -->
