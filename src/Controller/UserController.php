@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
+use App\Repository\PostRepository;
 use App\View\View;
 
 /**
@@ -39,10 +40,17 @@ class UserController
 
     public function profile()
     {
-        $view = new View('user/profile');
-        $view->title = 'Profile';
-        $view->heading = 'Profile';
-        $view->display();
+        $userId = Authentication::checkIfLoggedIn();
+        if ($userId > 0) {
+            $userRepository = new UserRepository();
+            $postRepository = new PostRepository();
+
+            $view = new View('user/profile');
+            $view->title = 'Profile';
+            $view->heading = 'Profile';
+            $view->posts = $postRepository->readAllFromCurrentUser($userId);
+            $view->display();
+        }
     }
 
     public function edit()
@@ -134,5 +142,9 @@ class UserController
     public function doLogout() {
         session_destroy();
         unset($_SESSION["user_id"]);
+    }
+
+    public function doCheckLogin() {
+        
     }
 }

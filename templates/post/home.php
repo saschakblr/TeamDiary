@@ -27,13 +27,9 @@
                     </div>
                     <div class="flex-fill align-middle">
                         <strong id="userNameDisplay">
-                            Max Mustermann
+                            <?= $post->firstName . ' ' . $post->name ?>
                         </strong>
-                        <br>
-                        <span class="unitDisplay">
-                            Marketing
-                        </span>
-                        <br>
+                        <br> 
                         <span class="creationTimeDisplay">
                             Created at: <?= date_format(new DateTime($post->createdAt), 'd.m.Y'); ?>
                         </span>
