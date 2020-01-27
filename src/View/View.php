@@ -80,11 +80,15 @@ class View
         }
     }
 
-    public function display()
+    public function display($id = 0)
     {
         extract($this->properties);
 
-        require './../templates/header.php';
+        if ($id > 0) {
+            require './../templates/header.php';
+        } else {
+            require './../templates/headerLogin.php';
+        }
         require $this->viewfile;
         require './../templates/footer.php';
     }

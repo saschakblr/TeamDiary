@@ -17,6 +17,7 @@ class PostRepository extends Repository
      * Funktionen zur Verfügung zu stellen.
      */
     protected $tableName = 'post';
+    protected $joinedTableName = 'user';
 
     /**
      * Erstellt einen neuen benutzer mit den gegebenen Werten.
@@ -31,12 +32,12 @@ class PostRepository extends Repository
      *
      * @throws Exception falls das Ausführen des Statements fehlschlägt
      */
-    public function create($title, $length, $description) {
+    public function create($title, $length, $description, $userId) {
 
-        $query = "INSERT INTO $this->tableName (title, length, description, createdAt) VALUES (?, ?, ?, SYSDATE())";
+        $query = "INSERT INTO $this->tableName (title, length, description, createdAt, userId) VALUES (?, ?, ?, SYSDATE(), ?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('sis', $title, $length, $description);
+        $statement->bind_param('sisi', $title, $length, $description, $userId);
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);
@@ -58,7 +59,45 @@ class PostRepository extends Repository
         return $statement->insert_id;
     }
 
-    public function delete($id) {
-        $query = "DELETE  * FROM $this->tablename WHERE id = ?";
+    public function readAllWithUser() {
+        $query = "SELECT a.id AS postId, a.title AS title, a.length AS length, a.description AS description, a.createdAt AS createdAt, b.id AS userId, b.firstname AS firstName, b.name AS name FROM `post` AS a JOIN user AS b ON (a.userId = b.id) ORDER BY a.id DESC";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->execute();
+
+        $result = $statement->get_result();
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+
+        // Datensätze aus dem Resultat holen und in das Array $rows speichern
+        $rows = array();
+        while ($row = $result->fetch_object()) {
+            $rows[] = $row;
+        }
+
+        return $rows;
+    }
+
+    public function readAllFromCurrentUser($uId) {
+        $query = "SELECT a.id AS postId, a.title AS title, a.length AS length, a.description AS description, a.createdAt AS createdAt, b.firstname AS firstName, b.name AS name FROM `post` AS a JOIN user AS b ON (a.userId = b.id) WHERE userId = ?";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('i', $uId);
+
+        $statement->execute();
+
+        $result = $statement->get_result();
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+
+        // Datensätze aus dem Resultat holen und in das Array $rows speichern
+        $rows = array();
+        while ($row = $result->fetch_object()) {
+            $rows[] = $row;
+        }
+
+        return $rows;
     }
 }

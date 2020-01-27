@@ -6,10 +6,11 @@ class Authentication {
         session_start();
 
         if (isset($_SESSION["user_id"])) {
-            return true;
+            return $_SESSION["user_id"];
         } else {
-            return false;
+            return 0;
         }
     }
 }
+
 ?>

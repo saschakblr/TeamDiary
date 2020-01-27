@@ -17,7 +17,7 @@
             <div class="cardHead row">
                 <!-- //* Title and length of the post -->
                 <div class="col">
-                    <h2><?= $post->title?></h2>
+                    <h2><?= $post->title ?></h2>
                     <span><?= ($post->length > 1) ? "$post->length Hours" : "$post->length Hour"?></span>
                 </div>
                 <!-- //* Avatar and info about the user -->
@@ -27,13 +27,9 @@
                     </div>
                     <div class="flex-fill align-middle">
                         <strong id="userNameDisplay">
-                            Max Mustermann
+                            <?= $post->firstName . ' ' . $post->name ?>
                         </strong>
-                        <br>
-                        <span class="unitDisplay">
-                            Marketing
-                        </span>
-                        <br>
+                        <br> 
                         <span class="creationTimeDisplay">
                             Created at: <?= date_format(new DateTime($post->createdAt), 'd.m.Y'); ?>
                         </span>
@@ -45,20 +41,22 @@
             <div class="postDescription">
                 <?= $post->description ?>
             </div>
-            <hr />
-            <!-- //* Buttons to edit and delete the post -->
-            <div class="postFooterCont">
-                <div>
-                    <form action="/post/doEdit" class="d-inline" name="edit" method="post">
-                        <input type="hidden" name="editId" value="<?= $post->id ?>">
-                        <button value="Edit" name="edit" type="submit" class="btn btn-primary">Edit</button>
-                    </form>
-                    <form action="/post/doDelete" class="d-inline" method="post">
-                        <input type="hidden" name="deleteId" value="<?= $post->id ?>">
-                        <button value="Delete" name="delete" type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+            <?php if ($post->userId == $user): ?>
+                <hr />
+                <!-- //* Buttons to edit and delete the post -->
+                <div class="postFooterCont">
+                    <div>
+                        <form action="/post/doEdit" class="d-inline" name="edit" method="post">
+                            <input type="hidden" name="editId" value="<?= $post->id ?>">
+                            <button value="Edit" name="edit" type="submit" class="btn btn-primary">Edit</button>
+                        </form>
+                        <form action="/post/doDelete" class="d-inline" method="post">
+                            <input type="hidden" name="deleteId" value="<?= $post->id ?>">
+                            <button value="Delete" name="delete" type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
         <?php endforeach; ?>
     <?php endif; ?>

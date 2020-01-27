@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
-use App\Repository\UnitRepository;
+use App\Repository\PostRepository;
 use App\View\View;
 
 /**
@@ -11,17 +11,6 @@ use App\View\View;
  */
 class UserController
 {
-    public function index()
-    {
-        $userRepository = new UserRepository();
-
-        $view = new View('user/index');
-        $view->title = 'Users';
-        $view->heading = 'Users';
-        $view->users = $userRepository->readAll();
-        $view->display();
-    }
-
     public function create()
     {
         $view = new View('user/create');
@@ -40,23 +29,29 @@ class UserController
 
     public function profile()
     {
-        if(Authentication::checkIfLoggedIn()){
-            $userRepository = new UserRepository(); 
+        $userId = Authentication::checkIfLoggedIn();
+        if ($userId > 0) {
+            $userRepository = new UserRepository();
+            $postRepository = new PostRepository();
+
             $view = new View('user/profile');
             $view->title = 'Profile';
             $view->heading = 'Profile';
-            $view->user = $userRepository->readById($_SESSION['user_id']);
-            $view->display();
-        }else{
-        header ("location : /user/irgendöbbis");}
+            $view->user = $userRepository->readById($userId);
+            $view->posts = $postRepository->readAllFromCurrentUser($userId);
+            $view->display($userId);
+        }
     }
 
     public function edit()
     {
-        $view = new View('user/edit');
-        $view->title = 'Edit Profile';
-        $view->heading = 'Edit Profile';
-        $view->display();
+        $userId = Authentication::checkIfLoggedIn();
+        if ($userId > 0) {
+            $view = new View('user/edit');
+            $view->title = 'Edit Profile';
+            $view->heading = 'Edit Profile';
+            $view->display($userId);
+        }
     }
 
     public function doCreate()
@@ -69,6 +64,8 @@ class UserController
 
             $userRepository = new UserRepository();
             $userRepository->create($firstName, $name, $email, $password);
+
+            $userRepository->login($email, $password);
         }
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
@@ -104,38 +101,42 @@ class UserController
     }
 
     public function doEdit() {
-        if (isset($_POST['edit']) && isset($_POST['editId'])) {
-            $userRepository = new UserRepository();
-            $unitRepository = new UnitRepository();
-            
-            $view = new View('user/edit');
-            $view->title = 'Edit User';
-            $view->heading = 'Edit User';
-            $view->user = $userRepository->readById($_POST['editId']);
-            $view->units = $unitRepository->readAll();
-            $view->display();
+        $userId = Authentication::checkIfLoggedIn();
+        if ($userId > 0) {
+            if (isset($_POST['edit']) && isset($_POST['editId'])) {
+                $userRepository = new UserRepository();
+                
+                $view = new View('user/edit');
+                $view->title = 'Edit User';
+                $view->heading = 'Edit User';
+                $view->user = $userRepository->readById($_POST['editId']);
+                $view->display($userId);
+            }
         }
     }
 
     public function doSave() {
-        if (isset($_POST['save']) && isset($_POST['saveId'])) {
-            if (isset($_POST['image']) && !empty($_POST['image']) && isset($_POST['firstName']) && !empty($_POST['firstName']) && isset($_POST['name']) && !empty($_POST['name']) && isset($_POST['email']) && !empty($_POST['email'])) {
-                $id = $_POST['saveId'];
-                $image = $_POST['image'];
-                $firstName = $_POST['firstName'];
-                $name = $_POST['name'];
-                $email = $_POST['email'];
-                $deleteProfile = $_POST['deleteProfile'];
-                
-                $userRepository = new UserRepository();
-                $userRepository->save($id, $image, $firstName, $lastName, $email, $deleteProfile);
+        $userId = Authentication::checkIfLoggedIn();
+        if ($userId > 0) {
+            if (isset($_POST['save']) && isset($_POST['saveId'])) {
+                if (isset($_POST['image']) && !empty($_POST['image']) && isset($_POST['firstName']) && !empty($_POST['firstName']) && isset($_POST['name']) && !empty($_POST['name']) && isset($_POST['email']) && !empty($_POST['email'])) {
+                    $id = $_POST['saveId'];
+                    $image = $_POST['image'];
+                    $firstName = $_POST['firstName'];
+                    $name = $_POST['name'];
+                    $email = $_POST['email'];
+                    $deleteProfile = $_POST['deleteProfile'];
+                    
+                    $userRepository = new UserRepository();
+                    $userRepository->save($id, $image, $firstName, $lastName, $email, $deleteProfile);
 
-                //header('Location: /user/profile');
-            } else {
-                //echo "Du kommst hier net rein!";
+                    header('Location: /user/profile');
+                } else {
+                    echo "Du kommst hier net rein!";
+                }
+            } else if (isset($_POST['reset'])) {
+                header('Location: /user/profile');
             }
-        } else if (isset($_POST['reset'])) {
-            //header('Location: /user/profile');
         }
     }
 
