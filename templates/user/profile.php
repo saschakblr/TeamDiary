@@ -4,7 +4,7 @@
     <div class="btnContainer">
         <form action="/user/doEdit" class="d-inline" name="edit" method="post">
             <input type="hidden" name="editId" value="<?= $user->id ?>">
-            <button type="submit" class="btn btn-secondary rightBtn">Edit Profile</button>
+            <button type="submit" name="edit" class="btn btn-secondary rightBtn">Edit Profile</button>
         </form>
     </div>
     <!-- //* Container to Display user information -->
