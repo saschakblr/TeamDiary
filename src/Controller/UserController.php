@@ -11,17 +11,6 @@ use App\View\View;
  */
 class UserController
 {
-    public function index()
-    {
-        $userRepository = new UserRepository();
-
-        $view = new View('user/index');
-        $view->title = 'Users';
-        $view->heading = 'Users';
-        $view->users = $userRepository->readAll();
-        $view->display();
-    }
-
     public function create()
     {
         $view = new View('user/create');
@@ -48,6 +37,7 @@ class UserController
             $view = new View('user/profile');
             $view->title = 'Profile';
             $view->heading = 'Profile';
+            $view->user = $userRepository->readById($userId);
             $view->posts = $postRepository->readAllFromCurrentUser($userId);
             $view->display();
         }
