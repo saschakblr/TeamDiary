@@ -30,9 +30,9 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <select name="unit">
-                        <?= foreach($units as $unit) ?>
+                        <?php foreach($units as $unit): ?>
                             <option value="<?=$unit->id;?>"><?=$unit->name;?></option>
-                        <?= endforeach ?>                        
+                        <?php endforeach ?>                        
                     </select>
                     </div>
                 </div>

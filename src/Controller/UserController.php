@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\UserRepository;
 use App\Repository\PostRepository;
+use App\Repository\UnitRepository;
 use App\View\View;
 
 /**
@@ -105,11 +106,13 @@ class UserController
         if ($userId > 0) {
             if (isset($_POST['edit']) && isset($_POST['editId'])) {
                 $userRepository = new UserRepository();
+                $unitRepository = new UnitRepository();
                 
                 $view = new View('user/edit');
                 $view->title = 'Edit User';
                 $view->heading = 'Edit User';
                 $view->user = $userRepository->readById($_POST['editId']);
+                $view->units = $unitRepository->readAll();
                 $view->display($userId);
             }
         }
