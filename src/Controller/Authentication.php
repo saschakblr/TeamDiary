@@ -1,5 +1,5 @@
 class Authentication {
-    public function checkIfLoggedIn() {
+    public static function checkIfLoggedIn() {
         session_start();
 
         if (isset($_SESSION["user_id"]) {
