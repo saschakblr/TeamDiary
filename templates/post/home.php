@@ -7,7 +7,7 @@
 	<?php else: ?>
         <!-- //* Button to create post -->
         <div class="btnContainer">
-            <a href="#">
+            <a href="/post/create">
                 <button type="button" class="btn btn-secondary rightBtn"><strong>+</strong> New Post</button>
             </a>
         </div>
@@ -35,7 +35,7 @@
                         </span>
                         <br>
                         <span class="creationTimeDisplay">
-                            Created at: 20.1.2020
+                            Created at: <?= date_format(new DateTime($post->createdAt), 'd.m.Y'); ?>
                         </span>
                     </div>
                 </div>

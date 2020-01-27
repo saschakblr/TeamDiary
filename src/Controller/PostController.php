@@ -23,9 +23,12 @@ class PostController
 
     public function edit()
     {
+        $postRepository = new PostRepository();
+
         $view = new View('post/edit');
         $view->title = 'Edit Post';
         $view->heading = 'Edit Post';
+        $view->post = $postRepository->readById($_POST['saveId']);
         $view->display();
     }
 
@@ -82,11 +85,9 @@ class PostController
             } else {
                 echo "Du kommst hier net rein!";
             }
+        } else if (isset($_POST['reset'])) {
+            header('Location: /post/home');
         }
-    }
-
-    public function doReset() {
-        // TODO: Write reset function for post-form
     }
 
     public function doDelete() {

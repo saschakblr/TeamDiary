@@ -19,7 +19,7 @@
                 <!-- //* Buttons to abort and submit changes -->
                 <div class="text-center">
                 <input type="hidden"  value="<?= $post->id ?>" />
-                <button type="reset" name="reset" class="btn btn-danger">Cancel</button>
+                <button type="submit" name="reset" class="btn btn-danger">Cancel</button>
                 <input type="hidden" name="saveId" value="<?= $post->id ?>" />
                 <button type="submit" name="save" class="btn btn-success">Submit</button>
             </form>
