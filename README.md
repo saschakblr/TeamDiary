@@ -2,4 +2,4 @@
  PHP ÜK repo
 
 
-bkkobls.bbc-projects.ch
+bkobls.bbc-projects.ch
