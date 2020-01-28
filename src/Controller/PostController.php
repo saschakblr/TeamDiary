@@ -50,6 +50,8 @@ class PostController
             $view->user = $userId;
             $view->posts = $postRepository->readAllWithUser();
             $view->display($userId);
+        } else {
+            echo "You are not logged in!";
         }
     }
 
