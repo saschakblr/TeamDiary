@@ -41,6 +41,8 @@ class UserController
             $view->user = $userRepository->readById($userId);
             $view->posts = $postRepository->readAllFromCurrentUser($userId);
             $view->display($userId);
+        } else {
+            echo "You are not logged in!";
         }
     }
 
@@ -52,6 +54,8 @@ class UserController
             $view->title = 'Edit Profile';
             $view->heading = 'Edit Profile';
             $view->display($userId);
+        } else {
+            echo "You are not logged in!";
         }
     }
 
@@ -115,6 +119,8 @@ class UserController
                 $view->units = $unitRepository->readAll();
                 $view->display($userId);
             }
+        } else {
+            echo "You are not logged in!";
         }
     }
 
@@ -139,6 +145,8 @@ class UserController
             } else if (isset($_POST['reset'])) {
                 header('Location: /user/profile');
             }
+        } else {
+            echo "You are not logged in!";
         }
     }
 

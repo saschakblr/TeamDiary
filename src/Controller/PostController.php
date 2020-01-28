@@ -24,20 +24,6 @@ class PostController
         }
     }
 
-    // public function edit()
-    // {
-    //     $userId = Authentication::checkIfLoggedIn();
-    //     if ($userId > 0) {
-    //         $postRepository = new PostRepository();
-
-    //         $view = new View('post/edit');
-    //         $view->title = 'Edit Post';
-    //         $view->heading = 'Edit Post';
-    //         $view->post = $postRepository->readById($_POST['saveId']);
-    //         $view->display($userId);
-    //     }
-    // }
-
     public function home()
     {
         $userId = Authentication::checkIfLoggedIn();
@@ -69,6 +55,8 @@ class PostController
                 }
             }
             header('Location: /post/home');
+        } else {
+            echo "You are not logged in!";
         }
     }
 
@@ -84,6 +72,8 @@ class PostController
                 $view->post = $postRepository->readById($_POST['editId']);
                 $view->display($userId);
             }
+        } else {
+            echo "You are not logged in!";
         }
     }
 
@@ -107,6 +97,8 @@ class PostController
             } else if (isset($_POST['reset'])) {
                 header('Location: /post/home');
             }
+        } else {
+            echo "You are not logged in!";
         }
     }
 
@@ -120,6 +112,8 @@ class PostController
             } else {
                 echo "Du kommst hier net rein!";
             }
+        } else {
+            echo "You are not logged in!";
         }
     }
 }
