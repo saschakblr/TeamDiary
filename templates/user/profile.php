@@ -20,7 +20,13 @@
     <?php if (empty($posts)): ?>
 		<div class="dhd">
 			<h2 class="item title">Hoopla! Keine Posts gefunden.</h2>
-		</div>
+        </div>
+        <!-- //* Button to create post -->
+        <div class="btnContainer">
+            <a href="/post/create">
+                <button type="button" class="btn btn-secondary rightBtn"><strong>+</strong> Create your first Post</button>
+            </a>
+        </div>
 	<?php else: ?>
         <!-- //* Button to create post -->
         <div class="btnContainer">
