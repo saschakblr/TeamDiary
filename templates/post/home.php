@@ -29,7 +29,7 @@
                 <!-- //* Avatar and info about the user -->
                 <div class="col right-action d-flex">
                     <div class="flex-fill profilePicCont">
-                        <img class="profilePic" src="/<?= $post->imagePath;?> " alt="Profile Picture">
+                        <img class="profilePic" src="/<?= (!empty($user->imagePath)) ? $user->imagePath : "images/defaultpic.png" ?> " alt="Profile Picture">
                     </div>
                     <div class="flex-fill align-middle">
                         <strong id="userNameDisplay">
