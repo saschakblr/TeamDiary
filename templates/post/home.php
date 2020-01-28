@@ -47,11 +47,11 @@
                 <div class="postFooterCont">
                     <div>
                         <form action="/post/doEdit" class="d-inline" name="edit" method="post">
-                            <input type="hidden" name="editId" value="<?= $post->id ?>">
+                            <input type="hidden" name="editId" value="<?= $post->postId ?>">
                             <button value="Edit" name="edit" type="submit" class="btn btn-primary">Edit</button>
                         </form>
                         <form action="/post/doDelete" class="d-inline" method="post">
-                            <input type="hidden" name="deleteId" value="<?= $post->id ?>">
+                            <input type="hidden" name="deleteId" value="<?= $post->postId ?>">
                             <button value="Delete" name="delete" type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </div>

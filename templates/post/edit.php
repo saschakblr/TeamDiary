@@ -6,13 +6,23 @@
             <form action="/post/doSave" class="d-inline" method="post">
                 <div class="input-group mb-3">
                     <input type="text" name="title" class="form-control" value="<?= $post->title ?>" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
-                </div>
-                <div class="input-group mb-3">
-                    <input type="number" name="length" class="form-control" value="<?= $post->length ?>" placeholder="Length" aria-label="Length" aria-describedby="basic-addon1">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+                    </div>
                 </div>
 
-                <div class="input-group mb-3" id="textarea"> 
+                <div class="input-group mb-3">
+                    <input type="number" name="length" class="form-control" value="<?= $post->length ?>" placeholder="Length" aria-label="Length" aria-describedby="basic-addon1">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Length</span>  
+                    </div>
+                </div>
+
+                <div class="input-group mb-3" id="textarea">
                     <textarea class="form-control" name="description" placeholder="Decription" aria-label="With textarea"><?= $post->description ?></textarea>
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Description</span>  
+                    </div>
                 </div>
 
 

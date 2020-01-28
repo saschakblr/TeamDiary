@@ -143,5 +143,11 @@ class UserController
     public function doLogout() {
         session_destroy();
         unset($_SESSION["user_id"]);
+
+        if (!isset($_SESSION["user_id"])) {
+            header('Location: /user/login');
+        } else {
+            echo "We weren&apos;t able to log you out!";
+        }
     }
 }

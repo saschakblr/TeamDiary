@@ -24,19 +24,19 @@ class PostController
         }
     }
 
-    public function edit()
-    {
-        $userId = Authentication::checkIfLoggedIn();
-        if ($userId > 0) {
-            $postRepository = new PostRepository();
+    // public function edit()
+    // {
+    //     $userId = Authentication::checkIfLoggedIn();
+    //     if ($userId > 0) {
+    //         $postRepository = new PostRepository();
 
-            $view = new View('post/edit');
-            $view->title = 'Edit Post';
-            $view->heading = 'Edit Post';
-            $view->post = $postRepository->readById($_POST['saveId']);
-            $view->display($userId);
-        }
-    }
+    //         $view = new View('post/edit');
+    //         $view->title = 'Edit Post';
+    //         $view->heading = 'Edit Post';
+    //         $view->post = $postRepository->readById($_POST['saveId']);
+    //         $view->display($userId);
+    //     }
+    // }
 
     public function home()
     {

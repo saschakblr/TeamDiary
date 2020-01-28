@@ -31,7 +31,9 @@
         </ul>
       </div>
       <img class="companyPic" src="\images\swisscom-logo.png" alt="Company" style>
-      <a class="nav-link " id="logout" href="/user/login">Logout</a>
+      <form action="/user/doLogout" method="post">
+        <button type="submit" name="logout" class="btn btn-light">Log out</button>
+      </form>
     </nav>
   </header>
 
