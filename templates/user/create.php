@@ -18,6 +18,7 @@
                 <input type="submit" name="send" value="Submit" class="btn btn-success">    
             </div>
         </form>
+        <p>If you already have an Account click <a href="/user/login">here.</a></p>
     </div>
 </div>
 

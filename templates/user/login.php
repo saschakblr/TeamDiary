@@ -12,6 +12,7 @@
                 <input type="submit" name="send" value="Submit" class="btn btn-success">    
             </div>
         </form>
+        <p>If you don't have an Account click <a href="/user/create">here.</a></p>
     </div>
 </div>
 
