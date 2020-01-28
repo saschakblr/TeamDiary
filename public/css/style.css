@@ -124,7 +124,7 @@ body > .container {
 
 
 .profilePic {
-  background-image: url(../images/profilepic.jpg);
+  /*background-image: url(../images/profilepic.jpg);*/
   object-fit: cover;
   background-repeat: no-repeat;
   background-size: 80px;
@@ -164,7 +164,7 @@ body > .container {
 }
 
 .bigAvatar {
-  background-image: url(../images/profilepic.jpg);
+  /*background-image: url(../images/profilepic.jpg);*/
   background-size: 150px;
   background-repeat: no-repeat;
   height: 150px;

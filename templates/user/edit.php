@@ -2,7 +2,6 @@
 <div class="contentContainer mx-auto">
     <form action="/user/doSave" class="d-inline" method="post" enctype="multipart/form-data">
         <!-- //* FileUploader for the avatar -->
-        <div class="bigAvatar mx-auto mb-4"></div>
         <div class="input-group mb-3 w-50 mx-auto">
             <div class="custom-file">
                 <input type="file" name="fileToUpload" class="custom-file-input" id="inputGroupFile02">
@@ -37,7 +36,7 @@
             <div class="text-center">
                 <input type="hidden" value="<?= $user->id ?>" />
                 <button type="submit" name="reset" class="btn btn-danger">Cancel</button>
-                <input type="hidden" name="saveId" value="<?= $user->id ?>" />
+                <input type="hidden" name="saveId" value="<?= $user->id; ?>" />
                 <button type="submit" name="save" class="btn btn-success">Submit</button>
             </div>
         </div>

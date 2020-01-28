@@ -131,13 +131,13 @@ class UserController
                     $userRepository = new UserRepository();
                     $userRepository->save($id, $firstName, $name, $email);
 
-                    /*header('Location: /user/profile');*/
+                    header('Location: /user/profile');
                 } else {
                     print_r($_POST);
                     echo "Du kommst hier net rein!";
                 }
             } else if (isset($_POST['reset'])) {
-                //header('Location: /user/profile');
+                header('Location: /user/profile');
             }
         }
     }

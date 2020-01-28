@@ -60,7 +60,7 @@ class PostRepository extends Repository
     }
 
     public function readAllWithUser() {
-        $query = "SELECT a.id AS postId, a.title AS title, a.length AS length, a.description AS description, a.createdAt AS createdAt, b.id AS userId, b.firstname AS firstName, b.name AS name FROM `post` AS a JOIN user AS b ON (a.userId = b.id) ORDER BY a.id DESC";
+        $query = "SELECT a.id AS postId, a.title AS title, a.length AS length, a.description AS description, a.createdAt AS createdAt, b.id AS userId, b.firstname AS firstName, b.name AS name, b.imagePath AS imagePath FROM `post` AS a JOIN user AS b ON (a.userId = b.id) ORDER BY a.id DESC";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->execute();
@@ -80,7 +80,7 @@ class PostRepository extends Repository
     }
 
     public function readAllFromCurrentUser($uId) {
-        $query = "SELECT a.id AS postId, a.title AS title, a.length AS length, a.description AS description, a.createdAt AS createdAt, b.firstname AS firstName, b.name AS name FROM `post` AS a JOIN user AS b ON (a.userId = b.id) WHERE userId = ?";
+        $query = "SELECT a.id AS postId, a.title AS title, a.length AS length, a.description AS description, a.createdAt AS createdAt, b.firstname AS firstName, b.name AS name, b.imagePath AS imagePath FROM `post` AS a JOIN user AS b ON (a.userId = b.id) WHERE userId = ?";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->bind_param('i', $uId);

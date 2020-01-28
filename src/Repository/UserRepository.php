@@ -86,7 +86,7 @@ class UserRepository extends Repository
     }
 
 
-    public function uploadMyFile($id, $image) {
+    public function uploadMyFile($id) {
         if (isset($_FILES["fileToUpload"]["name"])){
             $datetime = new \DateTime();
             $target_dir = "uploads/";
@@ -134,7 +134,7 @@ class UserRepository extends Repository
         }
     }
     public function save($id, $firstName, $name, $email) {
-        $newImage=$this->uploadMyFile($id, $_FILES);
+        $newImage=$this->uploadMyFile($id);
         echo $newImage;
         $query = "UPDATE $this->tableName SET imagePath = ?, firstname = ?, name = ?, email = ? WHERE id = ?";
 
