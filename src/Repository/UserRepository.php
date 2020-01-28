@@ -35,7 +35,8 @@ class UserRepository extends Repository
     {
         $password = sha1($password);
 
-        $query = "INSERT INTO $this->tableName (firstName, name, email, password) VALUES (?, ?, ?, ?)";
+        echo "$firstName, $name, $email, $password";
+        $query = "INSERT INTO $this->tableName (firstname, name, email, password) VALUES (?, ?, ?, ?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->bind_param('ssss', $firstName, $name, $email, $password);
@@ -87,50 +88,58 @@ class UserRepository extends Repository
 
     public function uploadMyFile($id, $image) {
         if (isset($_FILES["fileToUpload"]["name"])){
-            $filename = pathinfo($_FILES['fileToUpload']['name'], PATHINFO_FILENAME);
-            $extension = strtolower(pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION));
-            
+            $datetime = new \DateTime();
             $target_dir = "uploads/";
-            $date = new DateTime();
-
-            $target_file = $target_dir . "b" . "$id_" . $date->getTimestamp() . $extension;
+            $base_file = basename($_FILES["fileToUpload"]["name"]);
             $uploadOk = 1;
-            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            $imageFileType = strtolower(pathinfo($base_file,PATHINFO_EXTENSION));
+            $target_file = $target_dir . 'B'.$id.$datetime->getTimestamp().'.'.$imageFileType;
             // Check if image file is a actual image or fake image
-            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-            if($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
-            } else {
-                return $image;
+            if(isset($_POST["submit"])) {
+                $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+                if($check !== false) {
+                    $uploadOk = 1;
+                } else {
+                    return "";
+                    $uploadOk = 0;
+                }
+            }
+            // Check if file already exists
+            if (file_exists($target_file)) {
+                return "";
+                $uploadOk = 0;
+            }
+            // Check file size
+            if ($_FILES["fileToUpload"]["size"] > 500000) {
+                return "";
+                $uploadOk = 0;
             }
             // Allow certain file formats
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif" ) {
-                return $image;
+                return "";
+                $uploadOk = 0;
             }
             // Check if $uploadOk is set to 0 by an error
             if ($uploadOk == 0) {
-                return $image;
+                return "";
             // if everything is ok, try to upload file
             } else {
                 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                    return basename( $_FILES["fileToUpload"]["name"]);
+                    return $target_file;
                 } else {
-                    return $image;
+                    return "";
                 }
             }
         }
-        else{
-            return $image;
-        }
     }
-    public function save($id, $image, $firstName, $lastName, $email) {
-        $newImage=uploadMyFile($id, $image);
+    public function save($id, $firstName, $name, $email) {
+        $newImage=$this->uploadMyFile($id, $_FILES);
         echo $newImage;
         $query = "UPDATE $this->tableName SET imagePath = ?, firstname = ?, name = ?, email = ? WHERE id = ?";
 
         $statement = ConnectionHandler:: getConnection()->prepare($query);
-        $statement->bind_param('ssssi', $image, $firstName, $name, $email, $id);
+        $statement->bind_param('ssssi', $newImage, $firstName, $name, $email, $id);
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);

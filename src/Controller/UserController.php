@@ -122,23 +122,22 @@ class UserController
         $userId = Authentication::checkIfLoggedIn();
         if ($userId > 0) {
             if (isset($_POST['save']) && isset($_POST['saveId'])) {
-                if (isset($_POST['image']) && !empty($_POST['image']) && isset($_POST['firstName']) && !empty($_POST['firstName']) && isset($_POST['name']) && !empty($_POST['name']) && isset($_POST['email']) && !empty($_POST['email'])) {
+                if (isset($_POST['firstName']) && !empty($_POST['firstName']) && isset($_POST['name']) && !empty($_POST['name']) && isset($_POST['email']) && !empty($_POST['email'])) {
                     $id = $_POST['saveId'];
-                    $image = $_POST['image'];
                     $firstName = $_POST['firstName'];
                     $name = $_POST['name'];
                     $email = $_POST['email'];
-                    $deleteProfile = $_POST['deleteProfile'];
                     
                     $userRepository = new UserRepository();
-                    $userRepository->save($id, $image, $firstName, $lastName, $email, $deleteProfile);
+                    $userRepository->save($id, $firstName, $name, $email);
 
-                    header('Location: /user/profile');
+                    /*header('Location: /user/profile');*/
                 } else {
+                    print_r($_POST);
                     echo "Du kommst hier net rein!";
                 }
             } else if (isset($_POST['reset'])) {
-                header('Location: /user/profile');
+                //header('Location: /user/profile');
             }
         }
     }
