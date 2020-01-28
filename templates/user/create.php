@@ -9,10 +9,10 @@
                 <input type="text" name="name" placeholder="Name" class="form-control">
             </div>
             <div class="form-group">
-                <input type="text" name="email" placeholder="Email" class="form-control">
+                <input type="email" name="email" placeholder="Email" class="form-control">
             </div>
             <div class="form-group">
-                <input type="text" name="password" placeholder="Password" class="form-control">
+                <input type="password" name="password" placeholder="Password" class="form-control">
             </div>
             <div class="form-button">
                 <input type="submit" name="send" value="Submit" class="btn btn-success">    
