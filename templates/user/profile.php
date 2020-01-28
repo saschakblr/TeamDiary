@@ -9,7 +9,7 @@
     </div>
     <!-- //* Container to Display user information -->
     <div class="userProfile mx-auto">
-        <div class="bigAvatar"></div>
+        <img class="bigAvatar" src="/<?= $user->imagePath;?> " alt="Profile Picture">
         <div class="profileInfo">
             <div class="infoRow"><strong>Firstname: </strong><?= $user->firstname ?></div>
             <div class="infoRow"><strong>Lastname: </strong><?= $user->name ?></div>
@@ -40,7 +40,7 @@
                 <!-- //* Avatar and info about the user -->
                 <div class="col right-action d-flex">
                     <div class="flex-fill profilePicCont">
-                        <div class="profilePic"></div>
+                        <img class="profilePic" src="/<?= $post->imagePath;?> " alt="Profile Picture">
                     </div>
                     <div class="flex-fill align-middle">
                         <strong id="userNameDisplay">
